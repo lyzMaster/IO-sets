@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class test {
     public static void main(String args[]){
-        System.out.println(bignum(7775656099));
+        System.out.println(bignum(Long.parseLong("42343232432443235332")));//important
     }
     public static BigDecimal bignum(long n){
         BigDecimal res = BigDecimal.ONE;
@@ -13,5 +13,3 @@ public class test {
         return res;
     }
 }
-
-
