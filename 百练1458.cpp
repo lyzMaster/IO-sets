@@ -1,3 +1,7 @@
+/*
+* 精髓：将大问题，变成小问题
+*/
+
 #include <iostream>
 #include <algorithm>
 using namespace std;
