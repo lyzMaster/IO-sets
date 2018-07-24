@@ -15,19 +15,16 @@ int main(){
             visited[i][j] = -1;
         }
     }
-    for(int i=1;i<=n;i++){
-        visited[n][i] = num[n][i];
-    }
     cout<<maxsum(1,1);
     return 0;
 }
 
-int maxsum(int x,int y){   //x:hang;y:lie
-    if(x==n){
-        return num[x][y];
-    }
+int maxsum(int x,int y){   //x:行;y:列
     if(visited[x][y]!=-1){
         return visited[x][y];
+    }
+    if(x==n){
+        return num[x][y];
     }
     visited[x][y] = max(maxsum(x+1,y),maxsum(x+1,y+1))+num[x][y];
     return visited[x][y];
