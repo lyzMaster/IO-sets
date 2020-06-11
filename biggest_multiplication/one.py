@@ -11,10 +11,11 @@ class BiggestMultiplication:
         low = left
         high = right
         # 最易实现的优化，随机取基准，来降低最坏情况下的时间复杂度
-        key = self.arr[random.randint(low, high)]
+        p = random.randint(low, high)
+        key = self.arr[p]
         tmp = self.arr[low]
         self.arr[low] = key
-        key = tmp
+        self.arr[p] = tmp
         while left < right:
             while left < right and self.arr[right] > key:
                 right -= 1
