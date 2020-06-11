@@ -1,3 +1,6 @@
+import random
+
+
 class BiggestMultiplication:
     def __init__(self, arr):
         self.arr = arr
@@ -7,7 +10,11 @@ class BiggestMultiplication:
             return
         low = left
         high = right
-        key = self.arr[low]
+        # 最易实现的优化，随机取基准，来降低最坏情况下的时间复杂度
+        key = self.arr[random.randint(low, high)]
+        tmp = self.arr[low]
+        self.arr[low] = key
+        key = tmp
         while left < right:
             while left < right and self.arr[right] > key:
                 right -= 1
@@ -39,6 +46,7 @@ if __name__ == '__main__':
 
             b = BiggestMultiplication(array)   # 运行核心方法
             print(b.run())  # 得到结果
+            print(b.arr)
 
 
 
