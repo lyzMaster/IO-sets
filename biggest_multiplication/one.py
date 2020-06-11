@@ -26,10 +26,7 @@ class BiggestMultiplication:
             mut_pos = self.arr[-1] * self.arr[-2]   # 最大的两个正数相乘的结果
             if mut_neg > mut_pos:   # 若两个最小的负数相乘后结果 > 两最大正数相乘结果
                 return self.arr[0], self.arr[1]
-            else:
-                return self.arr[-2], self.arr[-1]
-        else:
-            return self.arr[-2], self.arr[-1]  # 返回最大的两个正数
+        return self.arr[-2], self.arr[-1]  # 返回最大的两个正数
 
 
 if __name__ == '__main__':
