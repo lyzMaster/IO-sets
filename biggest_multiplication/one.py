@@ -1,40 +1,34 @@
-import random
+import sys
 
 
 class BiggestMultiplication:
     def __init__(self, arr):
         self.arr = arr
+        # sys.maxsize：int最大值。初始化将int最小值赋予max，将int最大值赋给min
+        self.max, self.se_max, self.min, self.se_min = -sys.maxsize-1, -sys.maxsize-1, sys.maxsize, sys.maxsize
 
-    def quick_sort(self, left, right):
-        if left >= right:
-            return
-        low = left
-        high = right
-        # 最易实现的优化，随机取基准，来降低最坏情况下的时间复杂度
-        p = random.randint(low, high)
-        key = self.arr[p]
-        tmp = self.arr[low]
-        self.arr[low] = key
-        self.arr[p] = tmp
-        while left < right:
-            while left < right and self.arr[right] > key:
-                right -= 1
-            self.arr[left] = self.arr[right]
-            while left < right and self.arr[left] <= key:
-                left += 1
-            self.arr[right] = self.arr[left]
-        self.arr[right] = key
-        self.quick_sort(low, left - 1)
-        self.quick_sort(left + 1, high)
+    def sort(self):
+        # 遍历一遍即可
+        for num in self.arr:
+            if num > self.max:
+                self.se_max = self.max
+                self.max = num
+            elif num > self.se_max:
+                self.se_max = num
+            if num < self.min:
+                self.se_min = self.min
+                self.min = num
+            elif num < self.se_min:
+                self.se_min = num
 
     def run(self):
-        self.quick_sort(0, len(self.arr)-1)  # 递归法快排
-        if self.arr[1] < 0:  # 考虑情况 [-10, -1, 0, 1, 2]。排序后的数组第二个数是负数，那么第一个数一定是负数
-            mut_neg = self.arr[0] * self.arr[1]   # 最小的两个负数相乘的结果
-            mut_pos = self.arr[-1] * self.arr[-2]   # 最大的两个正数相乘的结果
-            if mut_neg > mut_pos:   # 若两个最小的负数相乘后结果 > 两最大正数相乘结果
-                return self.arr[0], self.arr[1]
-        return self.arr[-2], self.arr[-1]  # 返回最大的两个正数
+        self.sort()
+        if self.se_min < 0:   # 若次小值小于0，则最小值一定为负数
+            mut_neg = self.min * self.se_min   # 最小的两个负数相乘的结果
+            mut_pos = self.max * self.se_max   # 最大的两个正数相乘的结果
+            if mut_neg > mut_pos:
+                return self.min, self.se_min
+        return self.max, self.se_max
 
 
 if __name__ == '__main__':
@@ -47,7 +41,6 @@ if __name__ == '__main__':
 
             b = BiggestMultiplication(array)   # 运行核心方法
             print(b.run())  # 得到结果
-            print(b.arr)
 
 
 
