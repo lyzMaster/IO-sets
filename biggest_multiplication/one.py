@@ -10,12 +10,12 @@ class BiggestMultiplication:
     def sort(self):
         # 遍历一遍即可
         for num in self.arr:
-            if num > self.max:
+            if num > self.max:  # 找最大值、次大值
                 self.se_max = self.max
                 self.max = num
             elif num > self.se_max:
                 self.se_max = num
-            if num < self.min:
+            if num < self.min:   # 找最小值、次小值
                 self.se_min = self.min
                 self.min = num
             elif num < self.se_min:
